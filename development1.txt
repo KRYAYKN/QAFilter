@@ -1,0 +1,2 @@
+feature1 codes değişiklik1
+will be deleted commit
