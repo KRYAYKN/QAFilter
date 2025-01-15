@@ -19,7 +19,7 @@ PASSED_BRANCHES=$(jq -r '.summary.testCaseSummaryList[] | select(.status == "pas
 FAILED_OR_ABORTED_BRANCHES=$(jq -r '.summary.testCaseSummaryList[] | select(.status == "fail" or .status == "aborted") | .metadata.tags[]' accelq-results.json | sort | uniq)
 
 if [[ -z "$FAILED_OR_ABORTED_BRANCHES" ]]; then
-  echo "No failed or aborted branches found. QA branch is clean."
+  echo "No failed or aborted branches found. Only passed branches remain in QA branch."
   exit 0
 fi
 
@@ -36,8 +36,8 @@ git pull origin qa || { echo "Failed to pull latest QA branch"; exit 1; }
 for branch in $FAILED_OR_ABORTED_BRANCHES; do
   echo "Processing branch: $branch"
 
-  # Find all commits related to the branch (including merges and normal commits)
-  COMMITS=$(git log --pretty=format:"%H" --grep="$branch")
+  # Find all commits (including merge and normal commits) related to the branch
+  COMMITS=$(git log --all --pretty=format:"%H" --grep="$branch")
 
   if [[ -z "$COMMITS" ]]; then
     echo "No commits from branch $branch found in QA branch."
