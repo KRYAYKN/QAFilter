@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # AccelQ API credentials
-API_TOKEN="_vEXPgyaqAxtXL7wbvzvooY49cnsIYYHrWQMJH-ZcEM"
-EXECUTION_ID="452413"
-USER_ID="koray.ayakin@pargesoft.com"
+
+API_TOKEN="_vEXPgyaqAxtXL7wbvzvooY49cnsIYYHrWQMJH-ZcEM"  # Replace with your AccelQ API token
+EXECUTION_ID="452413"  # Replace with your AccelQ Execution ID
+USER_ID="koray.ayakin@pargesoft.com"  # Replace with your AccelQ User ID
+
 
 # Step 1: Fetch AccelQ Test Results
 echo "Fetching AccelQ test results..."
@@ -28,21 +30,24 @@ echo "Failed or aborted branches: $FAILED_OR_ABORTED_BRANCHES"
 
 # Step 3: Checkout QA Branch
 echo "Checking out QA branch..."
-rm -f accelq-results.json  # Geçici dosyayı kaldır
+
+rm -f accelq-results.json
 git checkout qa || { echo "Failed to checkout QA branch"; exit 1; }
 git pull origin qa || { echo "Failed to pull latest QA branch"; exit 1; }
 
-# Step 4: Revert All Commits from Failed or Aborted Branches
+# Step 4: Revert Commits for Failed or Aborted Branches
 for branch in $FAILED_OR_ABORTED_BRANCHES; do
   echo "Processing branch: $branch"
 
-  # Find all commits (including merge and normal commits) related to the branch
-  COMMITS=$(git log --all --pretty=format:"%H" --grep="$branch")
+  # Find merge commits for this branch in QA branch
+  COMMITS=$(git log qa --pretty=format:"%H" --merges --grep="Merge.*$branch")
+
 
   if [[ -z "$COMMITS" ]]; then
     echo "No commits from branch $branch found in QA branch."
     continue
   fi
+
 
   # Revert each commit related to the branch
   for commit in $COMMITS; do
@@ -63,6 +68,7 @@ for branch in $FAILED_OR_ABORTED_BRANCHES; do
       }
     fi
   done
+
 done
 
 # Step 5: Push Updated QA Branch
