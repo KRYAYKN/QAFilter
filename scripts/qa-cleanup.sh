@@ -36,7 +36,7 @@ git pull origin qa || { echo "Failed to pull latest QA branch"; exit 1; }
 for branch in $FAILED_OR_ABORTED_BRANCHES; do
   echo "Processing branch: $branch"
 
-  # Find all commits from the branch in QA branch
+  # Find all commits (not just merge commits) related to the branch
   COMMITS=$(git log qa --pretty=format:"%H" --grep="$branch")
 
   if [[ -z "$COMMITS" ]]; then
@@ -44,10 +44,15 @@ for branch in $FAILED_OR_ABORTED_BRANCHES; do
     continue
   fi
 
-  # Revert each commit from the branch
+  # Revert each commit related to the branch
   for commit in $COMMITS; do
     echo "Reverting commit: $commit"
-    git revert --no-edit $commit || { echo "Failed to revert commit $commit"; exit 1; }
+
+    # Try to revert the commit
+    git revert --no-edit $commit || {
+      echo "Failed to revert commit $commit. Skipping..."
+      continue
+    }
   done
 done
 
