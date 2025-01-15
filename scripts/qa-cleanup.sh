@@ -32,22 +32,22 @@ rm -f accelq-results.json  # Geçici dosyayı kaldır
 git checkout qa || { echo "Failed to checkout QA branch"; exit 1; }
 git pull origin qa || { echo "Failed to pull latest QA branch"; exit 1; }
 
-# Step 4: Revert Commits for Failed or Aborted Branches
+# Step 4: Find and Remove All Commits from Failed or Aborted Branches
 for branch in $FAILED_OR_ABORTED_BRANCHES; do
   echo "Processing branch: $branch"
 
-  # Find merge commits for this branch in QA branch
-  COMMITS=$(git log qa --pretty=format:"%H" --merges --grep="Merge.*$branch")
+  # Find all commits from the branch in QA branch
+  COMMITS=$(git log qa --pretty=format:"%H" --grep="$branch")
 
   if [[ -z "$COMMITS" ]]; then
     echo "No commits from branch $branch found in QA branch."
     continue
   fi
 
-  # Revert each merge commit
+  # Revert each commit from the branch
   for commit in $COMMITS; do
     echo "Reverting commit: $commit"
-    git revert --no-edit -m 1 $commit || { echo "Failed to revert commit $commit"; exit 1; }
+    git revert --no-edit $commit || { echo "Failed to revert commit $commit"; exit 1; }
   done
 done
 
