@@ -28,6 +28,11 @@ echo "Passed features: $PASSED_FEATURES"
 for feature in $PASSED_FEATURES; do
   echo "Processing feature: $feature"
 
+  # Clean up local changes
+  echo "Cleaning up local changes..."
+  git reset --hard || { echo "Failed to reset local changes"; exit 1; }
+  rm -f accelq-results.json || { echo "Failed to remove accelq-results.json"; exit 1; }
+
   # Find commits in QA branch related to the feature
   COMMITS=$(git log qa --pretty=format:"%H" --grep="$feature")
 
