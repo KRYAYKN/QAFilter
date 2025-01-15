@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # AccelQ API credentials
-API_TOKEN="_vEXPgyaqAxtXL7wbvzvooY49cnsIYYHrWQMJH-ZcEM"  # Replace with your AccelQ API token
-EXECUTION_ID="452413"  # Replace with your AccelQ Execution ID
-USER_ID="koray.ayakin@pargesoft.com"  # Replace with your AccelQ User ID
+API_TOKEN="_vEXPgyaqAxtXL7wbvzvooY49cnsIYYHrWQMJH-ZcEM"
+EXECUTION_ID="452413"
+USER_ID="koray.ayakin@pargesoft.com"
 
 # Step 1: Fetch AccelQ Test Results
 echo "Fetching AccelQ test results..."
@@ -16,7 +16,7 @@ echo "AccelQ test results saved to accelq-results.json"
 # Step 2: Identify Passed, Failed, and Aborted Branches
 echo "Identifying passed, failed, and aborted branches..."
 PASSED_BRANCHES=$(jq -r '.summary.testCaseSummaryList[] | select(.status == "pass") | .metadata.tags[]' accelq-results.json | sort | uniq)
-FAILED_OR_ABORTED_BRANCHES=$(jq -r '.summary.testCaseSummaryList[] | select(.status == "fail" or .status == "aborted") | .metadata.tags[]' accelq-results.json | sort | uniq)
+FAILED_OR_ABORTED_BRANCHES=$(jq -r '.summary.testCaseSummaryList[] | select(.status == "fail" or .status == "aborted") | .metadata.tags[]' accelq-results.json | sort | uniq | tr '\n' ' ')
 
 if [[ -z "$FAILED_OR_ABORTED_BRANCHES" ]]; then
   echo "No failed or aborted branches found. Only passed branches remain in QA branch."
@@ -28,7 +28,7 @@ echo "Failed or aborted branches: $FAILED_OR_ABORTED_BRANCHES"
 
 # Step 3: Checkout QA Branch
 echo "Checking out QA branch..."
-rm -f accelq-results.json
+rm -f accelq-results.json  # Geçici dosyayı kaldır
 git checkout qa || { echo "Failed to checkout QA branch"; exit 1; }
 git pull origin qa || { echo "Failed to pull latest QA branch"; exit 1; }
 
@@ -50,7 +50,6 @@ for branch in $FAILED_OR_ABORTED_BRANCHES; do
     git revert --no-edit -m 1 $commit || { echo "Failed to revert commit $commit"; exit 1; }
   done
 done
-
 
 # Step 5: Push Updated QA Branch
 echo "Pushing updated QA branch to origin..."
