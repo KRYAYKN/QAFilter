@@ -28,6 +28,7 @@ echo "Failed or aborted branches: $FAILED_OR_ABORTED_BRANCHES"
 
 # Step 3: Checkout QA Branch
 echo "Checking out QA branch..."
+rm -f accelq-results.json
 git checkout qa || { echo "Failed to checkout QA branch"; exit 1; }
 git pull origin qa || { echo "Failed to pull latest QA branch"; exit 1; }
 
