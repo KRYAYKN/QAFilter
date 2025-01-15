@@ -16,7 +16,7 @@ echo "AccelQ test results saved to accelq-results.json"
 # Step 2: Identify Passed, Failed, and Aborted Branches
 echo "Identifying passed, failed, and aborted branches..."
 PASSED_BRANCHES=$(jq -r '.summary.testCaseSummaryList[] | select(.status == "pass") | .metadata.tags[]' accelq-results.json | sort | uniq)
-FAILED_OR_ABORTED_BRANCHES=$(jq -r '.summary.testCaseSummaryList[] | select(.status == "fail" or .status == "aborted") | .metadata.tags[]' accelq-results.json | sort | uniq | tr '\n' ' ')
+FAILED_OR_ABORTED_BRANCHES=$(jq -r '.summary.testCaseSummaryList[] | select(.status == "fail" or .status == "aborted") | .metadata.tags[]' accelq-results.json | sort | uniq)
 
 if [[ -z "$FAILED_OR_ABORTED_BRANCHES" ]]; then
   echo "No failed or aborted branches found. Only passed branches remain in QA branch."
