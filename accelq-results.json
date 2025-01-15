@@ -1,54 +1,115 @@
 {
     "summary": {
-        "jobPid": 451975,
-        "status": "ABORTED",
+        "jobPid": 452413,
+        "status": "completed",
         "tagList": [],
-        "subStatus": "INPROGRESS_ABORT_INITIATED",
-        "reasons": [
-            "Run aborted by: Koray Ayakin"
-        ],
+        "subStatus": "In progress",
+        "reasons": [],
         "errors": [],
-        "pass": 0,
-        "fail": 0,
-        "notRun": 1,
-        "testcaseCount": 1,
-        "completedTimestamp": 1736424600697,
+        "pass": 1,
+        "fail": 3,
+        "notRun": 0,
+        "testcaseCount": 4,
+        "completedTimestamp": 1736927237109,
         "lastUpdatedTimestamp": 0,
         "testCaseSummaryList": [
             {
                 "reportVersion": "3.3",
                 "id": 0,
-                "dbPid": 38589,
-                "scnPid": 88311,
+                "dbPid": 39162,
+                "scnPid": 88558,
                 "name": "Test case 1",
-                "status": "aborted",
+                "status": "fail",
                 "lastStatusUpdatedUserName": "",
-                "lastErrorStmtMsg": "",
-                "startDate": 1736424546676,
-                "endDate": 0,
-                "jobPid": 451975,
-                "extResultLink": "",
+                "lastErrorStmtMsg": "[Navigate to Related Entries Page] Element [label : Related Entries] is not found after waiting for: 30 seconds.",
+                "startDate": 1736926181705,
+                "endDate": 1736926595087,
+                "jobPid": 452413,
+                "extResultLink": "https://poc.accelq.io/#/forward?tenantCode=poc25&projectCode=SaintGobainMSDPOC&jobPid=452413&testTypePid=0&scnPid=88558&testCasePid=39162&isAccessAllTC=true",
                 "selfHealingCount": null,
                 "hostTimezone": "TRT",
                 "metadata": {
                     "tags": [
-                        "FEATURE/FEM-XX"
+                        "feature/1"
+                    ]
+                }
+            },
+            {
+                "reportVersion": "3.3",
+                "id": 0,
+                "dbPid": 39190,
+                "scnPid": 88601,
+                "name": "Test case 1",
+                "status": "fail",
+                "lastStatusUpdatedUserName": "",
+                "lastErrorStmtMsg": "[Navigate to Related Entries Page] Element [label : Related Entries] is not found after waiting for: 30 seconds.",
+                "startDate": 1736926595747,
+                "endDate": 1736926998003,
+                "jobPid": 452413,
+                "extResultLink": "https://poc.accelq.io/#/forward?tenantCode=poc25&projectCode=SaintGobainMSDPOC&jobPid=452413&testTypePid=0&scnPid=88601&testCasePid=39190&isAccessAllTC=true",
+                "selfHealingCount": null,
+                "hostTimezone": "TRT",
+                "metadata": {
+                    "tags": [
+                        "feature/2"
+                    ]
+                }
+            },
+            {
+                "reportVersion": "3.3",
+                "id": 0,
+                "dbPid": 39191,
+                "scnPid": 88602,
+                "name": "Test case 1",
+                "status": "pass",
+                "lastStatusUpdatedUserName": "",
+                "lastErrorStmtMsg": "",
+                "startDate": 1736926999190,
+                "endDate": 1736927058190,
+                "jobPid": 452413,
+                "extResultLink": "https://poc.accelq.io/#/forward?tenantCode=poc25&projectCode=SaintGobainMSDPOC&jobPid=452413&testTypePid=0&scnPid=88602&testCasePid=39191&isAccessAllTC=true",
+                "selfHealingCount": null,
+                "hostTimezone": "TRT",
+                "metadata": {
+                    "tags": [
+                        "feature/3"
+                    ]
+                }
+            },
+            {
+                "reportVersion": "3.3",
+                "id": 0,
+                "dbPid": 39192,
+                "scnPid": 88603,
+                "name": "Test case 1",
+                "status": "fail",
+                "lastStatusUpdatedUserName": "",
+                "lastErrorStmtMsg": "[login] 'Element [label : Yes]' not found.",
+                "startDate": 1736927058748,
+                "endDate": 1736927236335,
+                "jobPid": 452413,
+                "extResultLink": "https://poc.accelq.io/#/forward?tenantCode=poc25&projectCode=SaintGobainMSDPOC&jobPid=452413&testTypePid=0&scnPid=88603&testCasePid=39192&isAccessAllTC=true",
+                "selfHealingCount": null,
+                "hostTimezone": "TRT",
+                "metadata": {
+                    "tags": [
+                        "feature/4"
                     ]
                 }
             }
         ],
         "reportVersion": "3.3",
-        "purpose": "Scenario - DemoBC",
+        "purpose": "Test Suite - QA-CleanupTS",
         "testTypePid": 0,
         "createdBy": "Koray Ayakin",
-        "startTimestamp": 1736424545387,
+        "startTimestamp": 1736926180361,
         "tenantCode": "poc25",
         "projectCode": "SaintGobainMSDPOC",
         "datasetName": "Test",
-        "scnCount": 1,
-        "testSuiteName": "",
-        "scnName": "DemoBC",
-        "scnPid": 88311,
+        "scnCount": 4,
+        "testSuiteName": "QA-CleanupTS",
+        "testSuitePid": 13696,
+        "scnName": "",
         "hostConfig": {
             "webProviderType": "Local Agent",
             "mobileProviderType": "Local Agent",
@@ -59,9 +120,9 @@
             "dynamicAgent": false,
             "parallelExecution": false,
             "numOfParallelRuns": 1,
-            "webAdditionalCapabilities": "",
+            "webAdditionalCapabilities": "{\n\"headless\": \"new\",\n  \"args\": [\n    \"--no-sandbox\",\n    \"--disable-dev-shm-usage\",\n    \"--disable-gpu\",\n    \"--ignore-certificate-errors\"\n\n  ]\n\n}",
             "mobileAdditionalCapabilities": "",
-            "webDriverConfigName": "",
+            "webDriverConfigName": "docker",
             "mobileDriverConfigName": "",
             "browserKeepAlive": false,
             "mobileKeepAlive": true,
@@ -92,16 +153,16 @@
         "debug": false,
         "enableIframeFreeFormSearch": false,
         "settings": {
-            "verbose": "false",
-            "apiTimeout": "60",
-            "loggerLevel": "INFO",
-            "slaThreshold": "0",
-            "elementWaitTime": "30",
-            "pageLoadWaitTime": "60",
             "captureScreenshot": "1",
             "enableSelfHealing": "true",
+            "pageLoadWaitTime": "60",
+            "elementWaitTime": "30",
+            "loggerLevel": "INFO",
+            "verbose": "false",
+            "enableWebAccessibilityTesting": "false",
             "enableWebPerformanceTesting": "false",
-            "enableWebAccessibilityTesting": "false"
+            "slaThreshold": "0",
+            "apiTimeout": "60"
         },
         "scenarioMetadataDef": {},
         "testCaseMetadataDef": {},
@@ -111,15 +172,60 @@
         "bugList": [],
         "scenarioList": [
             {
-                "name": "DemoBC",
+                "name": "Demo_BC (different location handling)feature",
                 "description": "",
-                "dbPid": 88311,
+                "dbPid": 88558,
                 "dataDriven": true,
                 "metadata": {},
                 "testCases": [],
                 "testCasesList": [
                     {
-                        "pid": 38589,
+                        "pid": 39162,
+                        "name": "Test case 1"
+                    }
+                ],
+                "jiraStoryList": []
+            },
+            {
+                "name": "copy of Demo_BC (different location handling)feature2",
+                "description": "",
+                "dbPid": 88601,
+                "dataDriven": true,
+                "metadata": {},
+                "testCases": [],
+                "testCasesList": [
+                    {
+                        "pid": 39190,
+                        "name": "Test case 1"
+                    }
+                ],
+                "jiraStoryList": []
+            },
+            {
+                "name": "copy of Demo_BC (different location handling)feature3",
+                "description": "",
+                "dbPid": 88602,
+                "dataDriven": true,
+                "metadata": {},
+                "testCases": [],
+                "testCasesList": [
+                    {
+                        "pid": 39191,
+                        "name": "Test case 1"
+                    }
+                ],
+                "jiraStoryList": []
+            },
+            {
+                "name": "copy of Demo_BC (different location handling)feature4",
+                "description": "",
+                "dbPid": 88603,
+                "dataDriven": true,
+                "metadata": {},
+                "testCases": [],
+                "testCasesList": [
+                    {
+                        "pid": 39192,
                         "name": "Test case 1"
                     }
                 ],
@@ -127,30 +233,28 @@
             }
         ],
         "autoReRun": false,
-        "extResultUrl": "https://poc.accelq.io/#/forward?tenantCode=poc25&projectCode=SaintGobainMSDPOC&jobPid=451975&testTypePid=0",
-        "extResultUrlWithApiCode": "https://poc.accelq.io/#/forward?tenantCode=poc25&projectCode=SaintGobainMSDPOC&jobPid=451975&testTypePid=0&extApiCode=8wr_S2SIlsbB-nVlS381CKKG1pZgvDRj9wRV5oCwP6Q",
-        "extResultUrlPasscode": "SmhBZVhiMEVzeU0="
+        "extResultUrl": "https://poc.accelq.io/#/forward?tenantCode=poc25&projectCode=SaintGobainMSDPOC&jobPid=452413&testTypePid=0",
+        "extResultUrlWithApiCode": "https://poc.accelq.io/#/forward?tenantCode=poc25&projectCode=SaintGobainMSDPOC&jobPid=452413&testTypePid=0&extApiCode=QC6bK6Hg2lyOZ2TprBscS1OVKBfknZGTXfQAAB8rCnQ",
+        "extResultUrlPasscode": "Q1RmUUx0YXlCRk0="
     },
     "parentPid": null,
     "childRunSummaryList": [
         {
-            "jobPid": 451975,
-            "purpose": "Scenario - DemoBC",
-            "startTimestamp": 1736424545387,
+            "jobPid": 452413,
+            "purpose": "Test Suite - QA-CleanupTS",
+            "startTimestamp": 1736926180361,
             "datasetName": "Test",
-            "testSuiteName": "",
-            "scnName": "DemoBC",
-            "status": "ABORTED",
-            "subStatus": "INPROGRESS_ABORT_INITIATED",
-            "reasons": [
-                "Run aborted by: Koray Ayakin"
-            ],
-            "reasonsStr": "Run aborted by: Koray Ayakin",
-            "pass": 0,
-            "fail": 0,
-            "notRun": 1,
+            "testSuiteName": "QA-CleanupTS",
+            "scnName": "",
+            "status": "completed",
+            "subStatus": "In progress",
+            "reasons": [],
+            "reasonsStr": "",
+            "pass": 1,
+            "fail": 3,
+            "notRun": 0,
             "bugsCount": 0,
-            "completedTimestamp": 1736424600697,
+            "completedTimestamp": 1736927237109,
             "webPlatformDetails": "{\"os\":\"Windows\",\"osVersion\":\"\",\"browser\":\"Chrome\",\"browserVersion\":\"\",\"isRealDevice\":true,\"deviceStatus\":3,\"customDriverUrl\":\"http://127.0.0.1:4723/wd/hub\"}",
             "createdBy": "Koray Ayakin",
             "debug": false,
@@ -167,9 +271,9 @@
                 "dynamicAgent": false,
                 "parallelExecution": false,
                 "numOfParallelRuns": 1,
-                "webAdditionalCapabilities": "",
+                "webAdditionalCapabilities": "{\n\"headless\": \"new\",\n  \"args\": [\n    \"--no-sandbox\",\n    \"--disable-dev-shm-usage\",\n    \"--disable-gpu\",\n    \"--ignore-certificate-errors\"\n\n  ]\n\n}",
                 "mobileAdditionalCapabilities": "",
-                "webDriverConfigName": "",
+                "webDriverConfigName": "docker",
                 "mobileDriverConfigName": "",
                 "browserKeepAlive": false,
                 "mobileKeepAlive": true,
