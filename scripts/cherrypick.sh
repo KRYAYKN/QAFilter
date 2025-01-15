@@ -45,19 +45,18 @@ for feature in $PASSED_FEATURES; do
   # Cherry-pick commits
   for commit in $COMMITS; do
     echo "Cherry-picking commit: $commit"
-    # Check if commit is a merge commit
     if git rev-list --parents -n 1 $commit | grep -q " "; then
       echo "Commit $commit is a merge commit. Using -m option."
-      git cherry-pick -m 1 $commit || { 
-        echo "Failed to cherry-pick $commit. Resolving conflict automatically..."
-        git cherry-pick --abort
-        exit 1
+      git cherry-pick -m 1 $commit --strategy-option=theirs || { 
+        echo "Failed to cherry-pick $commit. Resolving conflict automatically...";
+        git cherry-pick --abort;
+        exit 1;
       }
     else
-      git cherry-pick $commit || { 
-        echo "Failed to cherry-pick $commit. Resolving conflict automatically..."
-        git cherry-pick --abort
-        exit 1
+      git cherry-pick $commit --strategy-option=theirs || { 
+        echo "Failed to cherry-pick $commit. Resolving conflict automatically...";
+        git cherry-pick --abort;
+        exit 1;
       }
     fi
   done
